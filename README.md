@@ -1,4 +1,8 @@
 # MyDiary
+<div align="center">
+  <img src="https://initiate.alphacoders.com/download/images7/751199/jpg">
+</div>
+
 MyDiary is a website inspired by the anime [Kimi no Na wa (Your Name)](https://myanimelist.net/xxx), sharing a 90% similarity. Leveraging IndexDB storage, it provides a unique experience. The original codebase was crafted by [ssshooter](https://github.com/ssshooter/MyDiary/), and I have contributed by fixing bugs and implementing updates.
 
 
@@ -16,10 +20,23 @@ Feel free to contribute and make MyDiary even better for users everywhere.```
 ## App/web preview
 <details>
   <summary>Open Preview</summary>
-  ![Screenshot 1](screenshots/1.jpg)
-  ![Screenshot 2](screenshots/2.jpg)
-  ![Screenshot 3](screenshots/3.jpg)
-  ![Screenshot 4](screenshots/4.jpg)
-  ![Screenshot 5](screenshots/5.jpg)
-  ![Screenshot 6](screenshots/6.jpg)
+  <img alt="1" src="creenshots/1.jpg>
+  <img alt="2" src="creenshots/2.jpg>
+  <img alt="3" src="creenshots/3.jpg>
+  <img alt="4" src="creenshots/4.jpg>
+  <img alt="5" src="creenshots/5.jpg>
+  <img alt="6" src="creenshots/6.jpg>
 </details>
+
+## Credits
+<ul>
+  <li>
+    <a></a>
+  </li>
+  <li>
+    <a></a>
+  </li>
+  <li>
+    <a></a>
+  </li>
+</li>
