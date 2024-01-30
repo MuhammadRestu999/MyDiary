@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>about</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/custombs.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <style>
+      * {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      header {
+        padding-top: 22px;
+        height: 88px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        color: #5A95BA;
+        background-color: #fff;
+      }
+      header .title {
+        text-align: center;
+        line-height: 30px;
+        font-size: 18px;
+      }
+      #main {
+        padding-top: 88px;
+        overflow: hidden;
+        background-color: #5A95BA;
+        min-height: 100vh;
+      }
+      .content {
+        padding-left: 5px;
+        height: calc(100vh - 88px);
+        color: #FFFFFF;
+      }
+      .app {
+        display: none;
+      }
+      a, a:hover {
+        color: lime;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <div class="title"><span>About</span></div>
+      </header>
+      <div id="main">
+        <div class="content">
+          <br><br>
+          <p>This app is built with a webview that points to an HTML file that isn't mine, I just built an app for the file, the HTML file is open-source on GitHub<br>Link to the original Github project: <a href="https://github.com/ssshooter/MyDiary">https://github.com/ssshooter/MyDiary</a></p>
+        </div>
+      </div>
+    </div>
+    <script src="lib/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="lib/velocity.min.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
+    <script src="js/indexeddb.js"></script>
+    <script src="lib/alloy_finger.js"></script>
+    <script>
+      $(".app").fadeIn("slow");
+      if(localStorage.theme === "mitsuha"){
+      	$("head").append('<link rel="stylesheet" type="text/css" href="css/mitsuha.address.css"><link rel="stylesheet" type="text/css" href="css/mitsuha.bs.css">');
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>pop-up test</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+	<style>
+	</style>
+</head>
+<body>
+	<button id="suibian" data-poptarget="firstpop">suibiann</button>
+	<button id="suibian2" data-poptarget="secpop">suibiann22222</button>
+	<div class="pop-up" id="firstpop">
+		<div class="pop-up-box">
+			<div class="content">
+				<p class="name">miyamizu mitsuha</p>
+				<p class="number" href="tel:139xxxxxxxx">12304567</p>
+			</div>
+			<div class="footer">
+				<button class="btn btn-default"  onclick="location.href = 'tel:15626217777';">call</button>
+				<button class="btn btn-default">delete</button>
+			</div>
+		</div>
+	</div>
+	<div class="pop-up" id="secpop">
+		<div class="pop-up-box">
+			<div class="content">
+				<p class="name">tachibana taki</p>
+				<p class="number" href="tel:139xxxxxxxx">12304567</p>
+			</div>
+			<div class="footer">
+				<button class="btn btn-default"  onclick="location.href = 'tel:15626217777';">call</button>
+				<button class="btn btn-default">delete</button>
+			</div>
+		</div>
+	</div>
+	<script src="lib/jquery.min.js"></script>
+	<script src="lib/velocity.min.js"></script>
+	<script>
+		$('#suibian').popUpPop();
+		$('#suibian2').popUpPop();
+	</script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>address book</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="icon/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="css/custombs.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <style>
+      * {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      header {
+        padding-top: 22px;
+        height: 88px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        color: #5A95BA;
+        background-color: #fff;
+      }
+      header .address-book-name {
+        text-align: center;
+        line-height: 30px;
+        font-size: 18px;
+        /*平衡+号的造成的偏移*/
+        padding-left: 50px;
+      }
+        header .search-div {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        padding: 0 20px;
+      }
+        .icon-search {
+        vertical-align: middle; 
+        color: #fff;
+        position: absolute;
+        left: 25px;
+        line-height: 26px;
+        z-index: 10;
+      }
+        #search {
+        border: none;
+        border-radius: 10px;
+        background-color: #5A95BA;
+        color: #fff;
+        width: 100%;
+        vertical-align:middle;
+        position: relative;
+        line-height: 24px;
+        padding-left: 28px;
+        margin: 0 auto;
+      }
+      #add {
+        float: right;
+        vertical-align: middle; 
+        font-size: 20px;
+        margin-right: 10px; 
+      }
+      #main {
+        padding-top: 88px;
+        overflow: hidden;
+        background-color: #5A95BA;
+        min-height: 100vh;
+      }
+        #index {
+        position: fixed;
+        width: 22px;
+        padding-left: 5px;
+        height: calc(100vh - 88px);
+      }
+        #index .alphabet {
+        height: 3.7%;
+        color: #fff;
+      }
+        .address-list {
+        width: 100vw;
+        padding: 10px 30px 10px 52px;
+      }
+        .address-list .item {
+        width: 100%;
+        padding: 5px 15px;
+        margin: 8px 0;
+        background-color: #fff;
+        border-radius: 6px;
+      }
+        .address-list .alphabet-item {
+        text-align: center;
+        color: #fff;
+      }
+        .address-list .item .namae {
+        font-size: 2em;
+      }
+        .app {
+        display: none;
+      }
+    </style>
+</head>
+<body>
+
+<div class="pop-up" id="newaddress">
+    <div class="pop-up-box clearfix">
+        <div class="form-group">
+        <label>name</label>
+        <input type="text" name="name" class="form-control">
+        </div>
+        <div class="form-group">
+        <label>index</label>
+        <input type="text" name="index" class="form-control" disabled>
+        </div>
+        <div class="form-group">
+        <label>number</label>
+        <input type="tel" name="number" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-default pull-right" id="submitNewAddress">Submit</button>
+    </div>
+</div>
+
+<div class="pop-up" id="addressdetail">
+    <div class="pop-up-box clearfix">
+        <div class="content">
+        <p class="name"></p>
+        <p class="number"></p>
+        </div>
+        <div class="footer">
+        <button id="call" class="btn btn-default"  onclick="">call</button>
+        <button id="del" class="btn btn-default">delete</button>
+        </div>
+    </div>
+</div>
+
+    <div class="app">
+        <header>
+        <div class="address-book-name"><span id="title">緊急時以外かけちゃダメ</span><i class="iconfont icon-plus" id="add" data-poptarget="newaddress"></i></div>
+        
+        <div class="search-div">
+            <i class="iconfont icon-search"></i>
+            <input type="text" name="search" id="search" />
+        </div>
+        </header>
+        <div id="main">
+        <div id="index">
+            <div class="alphabet">#</div>
+            <div class="alphabet">A</div>
+            <div class="alphabet">B</div>
+            <div class="alphabet">C</div>
+            <div class="alphabet">D</div>
+            <div class="alphabet">E</div>
+            <div class="alphabet">F</div>
+            <div class="alphabet">G</div>
+            <div class="alphabet">H</div>
+            <div class="alphabet">I</div>
+            <div class="alphabet">J</div>
+            <div class="alphabet">K</div>
+            <div class="alphabet">L</div>
+            <div class="alphabet">M</div>
+            <div class="alphabet">N</div>
+            <div class="alphabet">O</div>
+            <div class="alphabet">P</div>
+            <div class="alphabet">Q</div>
+            <div class="alphabet">R</div>
+            <div class="alphabet">S</div>
+            <div class="alphabet">T</div>
+            <div class="alphabet">U</div>
+            <div class="alphabet">V</div>
+            <div class="alphabet">W</div>
+            <div class="alphabet">X</div>
+            <div class="alphabet">Y</div>
+            <div class="alphabet">Z</div>
+        </div>
+        <div class="address-list">
+        </div>
+        </div>
+    </div>
+    <script src="lib/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="lib/velocity.min.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
+    <script src="js/indexeddb.js"></script>
+    <script src="lib/alloy_finger.js"></script>
+    <script>
+        $(".app").fadeIn('slow');
+        if(localStorage.theme === 'mitsuha'){
+        $('head').append('<link rel="stylesheet" type="text/css" href="css/mitsuha.address.css"><link rel="stylesheet" type="text/css" href="css/mitsuha.bs.css">');
+      }
+        $('#title').html(localStorage.folder_name);
+        $('#add').popUpPop('newaddress');
+        var folder = Number(localStorage.getItem("folder"));
+        getAddress(folder, process);
+        function process(rowdata){
+        var data = rowdata.data;
+        var alphabetDivision;
+        var all_item = '';
+        console.log(data);
+        for(var i = 0;i<data.length;i++){
+            alphabetDivision = data[i].alphabetical_order;
+            if(alphabetDivision==='#'){alphabetDivisionId = 'hash';}
+            else{alphabetDivisionId = alphabetDivision.toLowerCase();}
+            if(data[i-1]){
+                if (data[i].alphabetical_order!==data[i-1].alphabetical_order) {
+                all_item+= '<div class="alphabet-item" id="'+ alphabetDivisionId +'">'+alphabetDivision+'</div>';
+              }
+          }else{
+                all_item+= '<div class="alphabet-item" id="'+ alphabetDivisionId +'">'+alphabetDivision+'</div>';
+          }
+            var item = '<div class="item clearfix" data-poptarget="addressdetail" data-aid="'+ data[i].address_id +'"><div class="namae">'+ data[i].name +'</div><div class="number pull-right">'+ data[i].number +'</div></div>';
+            all_item+=item;
+      }
+        $(".address-list").html(all_item);
+        $('.item').popUpPop('addressdetail');
+      }
+        $(".alphabet").on("click", function() {
+          const alphabet = this.innerText.toLowerCase();
+          if(!document.querySelector("#"+alphabet)) return;
+          
+          location.hash = alphabet;
+      });
+        $('.address-list').on('click','.item',function(){
+        var name = this.children[0].innerHTML;
+        var number =  this.children[1].innerHTML;
+        $('#addressdetail').find('.name').html(name);
+        $('#addressdetail').find('.number').html(number);
+        $('#del').data('aid', $(this).data('aid'));
+        $('#call').attr('onclick', 'location.href = \'tel:'+ number +'\'');
+      });
+        $('#search').on('input',function(e){ 
+        var input_content = e.target.value;
+        if(input_content){
+            var items = '';
+            searchAddress(folder, e.target.value,function(data){
+                for(var i = 0;i<data.length;i++){
+                var item = '<div class="item clearfix" data-poptarget="addressdetail" data-aid="'+ data[i].address_id +'"><div class="namae">'+ data[i].name +'</div><div class="number pull-right">'+ data[i].number +'</div></div>';
+                items+=item;
+              }
+                $(".address-list").html(items);
+                $('.item').popUpPop();
+          });
+      }else{
+            getAddress(folder, process);
+      }
+      });  
+        var el = document.getElementById('index');
+        var el_event = new AlloyFinger(el, {
+        touchMove: function (e) {
+            e.preventDefault();//禁止滚动
+            var Y = e.changedTouches[0].clientY - 88;
+            var cell = $(this).height()/27;
+            if (Y<cell) {scroll('hash');}
+            else if(Y<cell*2){scroll('a');}
+            else if(Y<cell*3){scroll('b');}
+            else if(Y<cell*4){scroll('c');}
+            else if(Y<cell*5){scroll('d');}
+            else if(Y<cell*6){scroll('e');}
+            else if(Y<cell*7){scroll('f');}
+            else if(Y<cell*8){scroll('g');}
+            else if(Y<cell*9){scroll('h');}
+            else if(Y<cell*10){scroll('i');}
+            else if(Y<cell*11){scroll('j');}
+            else if(Y<cell*12){scroll('k');}
+            else if(Y<cell*13){scroll('l');}
+            else if(Y<cell*14){scroll('m');}
+            else if(Y<cell*15){scroll('n');}
+            else if(Y<cell*16){scroll('o');}
+            else if(Y<cell*17){scroll('p');}
+            else if(Y<cell*18){scroll('q');}
+            else if(Y<cell*19){scroll('r');}
+            else if(Y<cell*20){scroll('s');}
+            else if(Y<cell*21){scroll('t');}
+            else if(Y<cell*22){scroll('u');}
+            else if(Y<cell*23){scroll('v');}
+            else if(Y<cell*24){scroll('w');}
+            else if(Y<cell*25){scroll('x');}
+            else if(Y<cell*26){scroll('y');}
+            else if(Y<cell*27){scroll('z');}
+      }
+      });
+        function scroll(x){
+        if(document.getElementById(x)){
+            $("html,body").animate({scrollTop:$("#"+x).offset().top-88},10);
+      }else{return;}
+      }
+        var initial_alphabet;
+        var reg = /[A-Za-z]/;
+        $('input[name="name"]').on('input',function(e){
+        if(e.target.value){
+            // console.log(e.target.value);
+            if(!initial_alphabet){//initial_alphabet没有内容时，为其赋值
+                var SBCvalue = toSBC(e.target.value);//转半角
+                console.log(SBCvalue);
+                if(reg.test(SBCvalue)){//如果是字母
+                initial_alphabet = SBCvalue;
+                $('input[name="index"]').val(initial_alphabet.toUpperCase());
+              }else{//不是字母，把index设定为#
+                initial_alphabet = '#';
+                $('input[name="index"]').val('#');
+              }
+          }
+      }else{//如果没有内容，initial_alphabet为空，并重新检测第一个输入的值
+            initial_alphabet = '';
+            $('input[name="index"]').val('');
+      }
+      });
+        function toSBC(str){//全角转半角
+        var result = "";
+        var len = str.length;
+        for(var i=0;i<len;i++)
+        {
+            var cCode = str.charCodeAt(i);
+            //全角与半角相差（除空格外）：65248（十进制）
+            cCode = (cCode>=0xFF01 && cCode<=0xFF5E)?(cCode - 65248) : cCode;
+            //处理空格
+            cCode = (cCode==0x03000)?0x0020:cCode;
+            result += String.fromCharCode(cCode);
+      }
+        return result;
+      }
+        $('#submitNewAddress').click(function() {
+        var index = $('input[name="index"]').val() || '#';
+        var name = $('input[name="name"]').val();
+        var number = $('input[name="number"]').val();
+        if(index && name && number){
+            var timestamp = new Date().getTime();
+            var newdata = {address_id:'aid'+timestamp,name:name,number:number,alphabetical_order:index,folder:Number(folder)};
+            addData('address', newdata, function(){
+                alert('添加成功');
+          });
+            plus(folder);
+            setTimeout("location.reload()",500);
+      }
+      });
+        $('#del').click(function(event) {
+        var id = $(this).data('aid');
+        deleteData('address', id, function(){
+            alert('deleted');
+            setTimeout("location.reload()",500);
+      });
+        minus(folder);
+      });
+    </script>
+</body>
+</html>

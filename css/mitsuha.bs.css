@@ -1,0 +1,29 @@
+/*修改bootstrap*/
+header{
+	border-color :#E88D83 !important;
+}
+#logo{
+	color: #E88D83 !important;
+}
+*{
+	font-family: "微软雅黑";
+}
+.btn-sm, .btn-group-sm>.btn{
+	padding: 5px 20px;
+}
+.center-block{
+	text-align: center;
+}
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default{
+	background-color: #DF5431 !important;
+	border-color: #E88D83 !important; 
+	color: #FFF !important;
+}
+.btn-default{
+	border-color: #E88D83 !important;; 
+	color: #E88D83 !important;;
+}
+
+.form-control:focus{
+	border-color: #E88D83 !important;
+}

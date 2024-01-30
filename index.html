@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/long-press-event.min.js"></script>
+    <script src="lib/sweetalert2.min.js"></script>
+    <script src="lib/shake.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="icon/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="css/custombs.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/sweetalert2.min.css">
+    <style type="text/css">
+      * {
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+      }
+
+      header {
+        padding-top: 22px;
+        height: 88px;
+        position: fixed;
+        width: 100vw;
+        background-color: #5A95BA;
+        color: #fff;
+      }
+      header img {
+        float: left;
+        height: 100%;
+        padding: 10px 10px; 
+      }
+      header .name {
+        float: left;
+        padding: 10px 10px; 
+      }
+      header .name span {
+        display: block;
+      }
+      header .name .nickname {
+        font-weight: bold;
+        font-size: 25px;
+        line-height: 25px;
+      }
+      #main {
+        min-height: 100vh;
+        box-sizing: border-box;
+        padding-top:89px; 
+        padding-bottom: 44px;
+      }
+      #main .item {
+        border-bottom: 1px #ccc solid;
+        padding: 10px 30px 10px 0;
+        margin-left: 30px;
+        line-height: 50px;
+        font-size: 18px; 
+        color: rgb(92,115,136);
+      }
+      .item > .iconfont {
+        font-size: 18px;
+        margin-right: 10px;
+      }
+      .item .total, .total > .iconfont {
+        font-size: 10px;
+      }
+      footer {
+        position: fixed;
+        width: 100vw;
+        height: 44px;
+        background-color: #fff;
+        border-top: 1px #CACACA solid;
+        bottom: 0;
+      }
+      footer input {
+        border: none;
+        border-radius: 10px;
+        background-color: #5A95BA;
+        color: #fff;
+        width: 70%;
+        vertical-align:middle;
+        position: relative;
+        margin-left: 10px;
+        margin-top: 6px;
+        line-height: 28px;
+        padding-left: 28px;
+      }
+      footer .iconfont {
+        vertical-align: middle; 
+        line-height: 44px;
+        font-size: 25px;
+        color: #5A95BA;
+      }
+      footer .icon-search {
+        position: absolute;
+        color: #fff;
+        left: 10px;
+      }
+      footer .icon-setting {
+        position: absolute;
+        right: 10px;
+      }
+      #search-result {
+        display: none;
+        background-color: rgba(0,0,0,.5);
+        position: absolute;
+        height: calc(100vh - 44px);
+        width: 100vw;
+        top: 0;left: 0;
+        padding-top: 20px;
+        overflow: scroll;
+      }
+      #search-result .item {
+        height: 80px;
+        background-color: #fff;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        color: #5A95BA;
+      }
+      .date-and-week {
+        padding-top: 10px;
+        height: 60px;
+        width: 60px;
+        text-align: center;
+      }
+      .date-and-week .date {
+        font-size: 40px;
+        line-height: 40px;
+        margin-bottom: 0;
+      }
+      .content {
+        padding-top: 14px;
+      }
+      .content p {
+        margin-bottom: 0;
+      }
+      .content .create_time {
+        font-size: 10px;
+      }
+      .content .description {
+        font-size: 10px;
+      }
+      .state {
+        padding-right: 10px;
+        padding-top: 14px;
+      }
+      .state i {
+        margin: 0 2px;
+      }
+      .state p {
+        text-align: right;
+        font-size: 20px;
+      }
+      #setting-div {
+        height: 60px;
+        width: 100vw;
+        background-color: #5A95BA;
+        position: fixed;
+        bottom: 0;
+        display: none;
+        color: #fff;
+        line-height: 60px;
+      }
+      #setting-div .iconfont {
+        text-align: center;
+        font-size: 30px;
+        width: 32%;
+        display: inline-block;
+      }
+      #setting-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100vw;
+        background-color: rgba(0,0,0,.5);
+        display: none;
+      }
+      .table {
+        display: table;
+        height:100%;
+        pointer-events:none;/* This makes sure that we can still click outside of the modal to close it */
+      }
+      .table-cell {
+        display: table-cell;
+        vertical-align: middle;
+        pointer-events:none;
+      }
+      .modal-content {
+        pointer-events: all;
+      }
+      input[type="radio"] {
+        display: none;
+      }
+      .checkbox label {
+        opacity: .5;
+      }
+      .checkbox label.checked {
+        opacity: 1;
+      }
+      strong {
+        display: inline-block;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pop-up" id="newfolder">
+      <div class="pop-up-box clearfix">
+        <div class="checkbox">
+          <strong>folder type</strong>
+          <label name="diary" class="checked" for="diary"><i class="iconfont icon-book"></i>diary<input type="radio" id="diary" checked="checked" value="diary"></label>
+          <label name="list" for="list"><i class="iconfont icon-alert"></i>list<input type="radio" id="list" value="list"></label>
+          <label name="address" for="address"><i class="iconfont icon-phone"></i>address book<input type="radio" id="address" value="address"></label>
+        </div>
+        <div class="form-group">
+          <strong>folder name</strong>
+          <input type="text" name="folder_name" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-default pull-right" id="submitNewFolder">Submit</button>
+      </div>
+    </div>
+    <div id="setting-mask"></div>
+    <div class="app">
+      <header>
+        <img src="img/avatar.png" alt="avatar" class="img-circle">
+        <div class="name">
+          <span class="nickname">UNSET</span>
+          <span class="realname">UNSET</span>
+        </div>
+      </header>
+      <div id="main"></div>
+      <div id="search-result" class="container">
+      </div>
+      <footer>
+        <input type="text" name="search" id="search" />
+        <i class="iconfont icon-search"></i>
+        <i class="iconfont icon-setting" id="setting"></i>
+      </footer>
+    </div>
+    <div id="setting-div">
+      <i class="iconfont icon-plus" id="new" data-toggle="modal" data-poptarget="newfolder"></i>
+      <i class="iconfont icon-theme" id="theme" onclick="changeTheme()"></i>
+      <i class="iconfont icon-about" id="about" onClick="location='about.html'"></i>
+    </div>
+    <script src="js/common.js"></script>
+    <script src="lib/velocity.min.js"></script>
+    <script type="text/javascript" src="js/indexeddb.js"></script>
+    <script type="text/javascript">
+      if(!localStorage.name || !localStorage.fullname) {
+        Swal.fire({
+          icon: "question",
+          title: "Your Name?",
+          html: `
+<input class="swal2-input" id="name" type="name" value="" placeholder="Nickname" required><br>
+<input class="swal2-input" id="full" type="name" value="" placeholder="Full name" required>
+`,
+          confirmButtonText: "Continue",
+          allowOutsideClick: false,
+          preConfirm: () => {
+            const result = {
+              name: document.getElementById("name").value,
+              fullname: document.getElementById("full").value
+            };
+            if(!result.name || !result.fullname) return Swal.showValidationMessage("You must enter your nickname and full name!");
+            return result;
+          }
+        }).then((r) => {
+          localStorage.name = r.value.name;
+          localStorage.fullname = r.value.fullname;
+          location.reload();
+        });
+      } else {
+        document.querySelector(".nickname").innerText = localStorage.name;
+        document.querySelector(".realname").innerText = localStorage.fullname;
+      };
+
+      if(localStorage.theme === "mitsuha") {
+        $("head").append('<link rel="stylesheet" type="text/css" href="css/mitsuha.home.css"><link rel="stylesheet" type="text/css" href="css/mitsuha.bs.css">');
+        $('img[alt="avatar"]').attr("src", "img/avatar2.png");
+      };
+      $("#new").popUpPop("newfolder");
+      getDataAll("menu", process);
+      function process(rowdata) {
+        const data = rowdata.data;
+        let monthDivision;
+        for(let i in data) {
+          const item = '<div class="item" id="'+ data[i].type+'_'+data[i].folder_id +'"><i class="iconfont icon-'+ data[i].icon +'"></i><span>'+ data[i].name +'</span><span class="total pull-right">'+ data[i].count +'<i class="iconfont icon-arrow-right"></i></span></div>';
+          $("#main").append(item);            
+        }
+        document.querySelectorAll("#main > .item").forEach(e => e.addEventListener("long-press", function() {
+          const item = this.children[2].innerText * 1;
+          Swal.fire({
+            icon: "warning",
+            title: "Warning!",
+            text: `Are you sure you want to delete this folder? by deleting this folder you also delete ${item} diaries, lists, or address books in this folder.`,
+            focusConfirm: false,
+            showCancelButton: true,
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it"
+          }).then((r) => {
+            if(r.isConfirmed) {
+              deleteData("menu", this.getAttribute("id").split("_")[1] * 1, function() {
+                alert("Deleted");
+                setTimeout("location.reload()", 500);
+              });
+            };
+          });
+        }));
+      }
+
+      const promises = {};
+      const promisify = (f) => promises[f.name] = (...args) => new Promise(r => f(...args, r));
+
+      promisify(addData);
+      promisify(getDataAll);
+      promisify(getDataAll);
+      promisify(getDiaryBySearch);
+      promisify(getAddress);
+      promisify(deleteData);
+
+      $("#main").on("click",".item",function() {
+        const type = $(this).attr("id").split("_");
+        const folder_name = $(this).children("span").first().html();
+        if(type[0] === "diary") {
+          location = "entries.html";
+        } else if(type[0] === "list") {
+          location = "list.html";
+        } else {
+          location = "address.html";
+        }
+        localStorage.setItem("folder", type[1]);
+        localStorage.setItem("folder_name", folder_name);
+      });
+      $("#search").on("input",function(e) { 
+        const input_content = $(this).val();
+        if(input_content) {
+          $("#search-result").fadeIn();
+          let items = "";
+          searchString($(this).val(),function(data) {
+            for(let i in data) {
+              const item = '<div id="'+data[i].id+'" data-toggle="modal" data-target="#myModal" class="item"><div class="date-and-week pull-left"><p class="date">'+data[i].date+'</p><p class="week">'+data[i].day+'</p></div><div class="content pull-left"><p class="create_time">'+data[i].time+'</p><p class="title">'+data[i].title+'</p><p class="description">'+data[i].description+'</p></div><div class="state pull-right"><i class="iconfont icon-sun"></i><i class="iconfont icon-smile-copy"></i><i class="iconfont icon-bookmark"></i></div></div>';
+              items+=item;
+            }
+            $("#search-result").html(items);
+          });
+        } else {
+          $("#search-result").fadeOut();
+        }
+      });  
+      $("#setting").click(function() {
+        $("#setting-mask").fadeIn();
+        $("#setting-div").fadeIn();
+      });
+      $("#setting-mask").on("touchstart",function(e) {
+        e.preventDefault();
+      });
+      $("#setting-mask").on("touchend",function(e) {
+        $("#setting-mask").fadeOut();
+        $("#setting-div").fadeOut();
+      });
+      
+      function changeTheme() {
+        if(localStorage.theme === "mitsuha") {
+          localStorage.setItem("theme","taki");
+         } else {
+          localStorage.setItem("theme","mitsuha");
+        }
+        location.reload();
+      }
+      
+      $(function() {
+        $("label").click(function() {
+          const radioId = $(this).attr("name");
+          $("label").removeAttr("class") && $(this).attr("class", "checked");
+          $('input[type="radio"]').removeAttr("checked") && $("#" + radioId).attr("checked", "checked");
+        });
+      });
+      
+      $("#submitNewFolder").click(function() {
+        const type = $('input[type="radio"]:checked').attr("value");
+        const name = $('input[name="folder_name"]').val();
+        let icon;
+        if(type === "diary") {
+          icon = "book";
+        } else if(type === "list") {
+          icon = "alert";
+        } else {
+          icon = "phone";
+        }
+        if(name) {
+          const newdata = { type: type, count: 0 ,icon: icon, name: name };
+          addData("menu", newdata, function() {
+            alert("Added successfully");
+            location.reload();
+          });
+        } else {
+          alert("Please enter a folder name");
+        }
+      });
+
+      const findShake = new Shake({
+        threshold: 15
+      });
+      findShake.start();
+      window.addEventListener("shake", function() {
+        Swal.fire({
+          title: "Backup and restore",
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: "Backup",
+          denyButtonText: "Restore",
+          denyButtonColor: "#7066E0",
+          focusConfirm: false,
+          allowOutsideClick: false
+        }).then(async({ isConfirmed: backup, isDenied: restore }) => {
+          if(backup) {
+            // Execute code below when clicking Backup
+
+            async function getData(folder) {
+              let res;
+              if(folder.type === "address") res = await promises.getAddress(folder.folder_id);
+              else res = await promises.getDiaryBySearch(folder.type, folder.folder_id+"");
+
+              return res.data;
+            }
+            const result = []
+            const { data: folders } = await promises.getDataAll("menu");
+            for(let folder of folders) result.push({
+              folder,
+              data: await getData(folder)
+            });
+
+            const reg = /^(MyDiary\/[0-9]\.[0-9])$/;
+            const link = document.createElement("a");
+            link.download = `MyDiary_backup_${Date.now()}.json`;
+
+            const blob = new Blob([JSON.stringify(result, null, 2)], {
+              type: "text/plain"
+            });
+            link.href = reg.test(navigator.userAgent) ? `data:application/json;base64,${btoa(JSON.stringify(result, null, 2))}` : URL.createObjectURL(blob);
+            if(!reg.test(navigator.userAgent)) {
+              link.click();
+              URL.revokeObjectURL(link.href);
+            } else window.BLOB_BACKUP_URL = link.href;
+          } else if(restore) {
+            // Execute code below when clicking Restore
+            Swal.fire({
+              title: "Restore",
+              showCancelButton: true,
+              focusConfirm: false,
+              allowOutsideClick: false,
+              input: "file"
+            }).then(({ value: file }) => {
+              const reader = new FileReader();
+              reader.onerror = console.error;
+              reader.onload = async() => {
+                const { type } = file;
+                if(type !== "application/json") return Swal.fire("Unsupported format", "Only supports json format files", "error");
+
+                let json
+                try {
+                  json = JSON.parse(atob(reader.result.slice(29)));
+                } catch {
+                  return Swal.fire("Invalid JSON", "JSON file is corrupted!", "error");
+                };
+
+                const validate = (arr) => {
+                  if(!Array.isArray(arr)) return false;
+
+                  for(const item of arr) {
+                    if(typeof item !== "object" || Array.isArray(item)) return false;
+                    if(!item.folder || typeof item.folder !== "object")  return false;
+                    if(!Array.isArray(item.data)) return false;
+
+                    for(const dataItem of item.data) {
+                      if(typeof dataItem !== "object" || Array.isArray(dataItem)) return false;
+                      if(item.folder.type === "diary" && (
+                        typeof dataItem.diary_id !== "string" ||
+                        typeof dataItem.create_date !== "string" ||
+                        typeof dataItem.content !== "string" ||
+                        typeof dataItem.title !== "string" ||
+                        typeof dataItem.folder !== "string" ||
+                        typeof dataItem.date !== "number" ||
+                        typeof dataItem.day !== "string" ||
+                        typeof dataItem.time !== "string" ||
+                        typeof dataItem.month !== "string" ||
+                        typeof dataItem.monthNum !== "number" ||
+                        typeof dataItem.type !== "string" ||
+                        typeof dataItem.description !== "string"
+                      )) return "val 1" // false;
+                      if(item.folder.type === "list" && (
+                        typeof dataItem.list_id !== "string" ||
+                        typeof dataItem.content !== "string" ||
+                        typeof dataItem.folder !== "string" ||
+                        typeof dataItem.type !== "string" ||
+                        typeof dataItem.state !== "number"
+                      )) return false;
+                      if(item.folder.type === "address" && (
+                        typeof dataItem.address_id !== "string" ||
+                        typeof dataItem.name !== "string" ||
+                        typeof dataItem.number !== "string" ||
+                        typeof dataItem.alphabetical_order !== "string" ||
+                        typeof dataItem.folder !== "number"
+                      )) return false;
+                    };
+                  };
+
+                  return true;
+                };
+                if(!validate(json)) return Swal.fire("Invalid JSON", "", "error");
+
+                Swal.fire("Restoring data...");
+                for(const id of [...document.querySelectorAll("#main > .item")].map(v => v.getAttribute("id").split("_")[1] * 1)) await promises.deleteData("menu", id)
+
+                for(const { folder, data: items } of json) {
+                  await promises.addData("menu", folder);
+                  for(const item of items) await promises.addData(folder.type, item);
+
+                  location.reload();
+                };
+              };
+              reader.readAsDataURL(file);
+            });
+          } else {
+            // Execute code below when clicking Cancel
+            
+          };
+        });
+      });
+    </script>
+  </body>
+</html>
