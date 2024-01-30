@@ -18,12 +18,12 @@ MyDiary is a website inspired by the anime [Kimi no Na wa (Your Name)](https://m
 ## App/web preview
 <details>
   <summary>Open Preview</summary>
-  <img alt="1" src="creenshots/1.jpg>
-  <img alt="2" src="creenshots/2.jpg>
-  <img alt="3" src="creenshots/3.jpg>
-  <img alt="4" src="creenshots/4.jpg>
-  <img alt="5" src="creenshots/5.jpg>
-  <img alt="6" src="creenshots/6.jpg>
+  <img alt="1" src="creenshots/1.jpg">
+  <img alt="2" src="creenshots/2.jpg">
+  <img alt="3" src="creenshots/3.jpg">
+  <img alt="4" src="creenshots/4.jpg">
+  <img alt="5" src="creenshots/5.jpg">
+  <img alt="6" src="creenshots/6.jpg">
 </details>
 
 ## Credits
