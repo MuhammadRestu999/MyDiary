@@ -1,185 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>List</title>
-	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-	<script src="lib/jquery.min.js"></script>
-	<script src="bootstrap/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="icon/iconfont.css">
-	<link rel="stylesheet" type="text/css" href="css/custombs.css">
-	<style type="text/css">
-		* {
-			-webkit-user-select: none;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>List</title>
+  <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+  <script src="lib/jquery.min.js"></script>
+  <script src="bootstrap/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="icon/iconfont.css">
+  <link rel="stylesheet" type="text/css" href="css/custombs.css">
+  <style type="text/css">
+    * {
+      -webkit-user-select: none;
                             -moz-user-select: none;
                              -ms-user-select: none;
                                  user-select: none;
-		}
+    }
 
-		header{
-			/*padding for导航栏*/
-			padding-top: 22px;
-			position: fixed;
-			width: 100vw;
-			background-color: #5A95BA;
-			color: #FFF;
-			z-index: 999;
-		}
-		header .title{
-			font-size: 25px;
-			text-align: center;
-			line-height: 66px;
-		}
-		header .iconfont{
-			position: absolute;
-			right: 20px;
-			top: 36px;
-			font-size: 25px;
-		}
-		#main{
-			padding-top:88px; 
-			padding-bottom: 44px;
-			overflow: hidden;
-		}
-		#main ul{
-			background-image: url('img/line.png');
-			background-size:100vw 60px;
-			position: relative;
-			right: 10px;
-		}
-		#main ul li{
-			font-size: 20px;
-			color: #5A95BA;
-			line-height: 60px;
-			word-wrap: break-word;
-		}
-		#main ul li input{
-			line-height: 30px;
-			border: none;
-		}
-		.del{
-			opacity: 0.5;
-			text-decoration: line-through;
-		}
-	</style>
+    header{
+      /*padding for导航栏*/
+      padding-top: 22px;
+      position: fixed;
+      width: 100vw;
+      background-color: #5A95BA;
+      color: #FFF;
+      z-index: 999;
+    }
+    header .title{
+      font-size: 25px;
+      text-align: center;
+      line-height: 66px;
+    }
+    header .iconfont{
+      position: absolute;
+      right: 20px;
+      top: 36px;
+      font-size: 25px;
+    }
+    #main{
+      padding-top:88px; 
+      padding-bottom: 44px;
+      overflow: hidden;
+    }
+    #main ul{
+      background-image: url('img/line.png');
+      background-size:100vw 60px;
+      position: relative;
+      right: 10px;
+    }
+    #main ul li{
+      font-size: 20px;
+      color: #5A95BA;
+      line-height: 60px;
+      word-wrap: break-word;
+    }
+    #main ul li input{
+      line-height: 30px;
+      border: none;
+    }
+    .del{
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+  </style>
 </head>
 <body>
-	<div class="app">
-		<header>
-			<div class="title"></div>
-			<i class="iconfont icon-pencil"></i>
-		</header>
-		<div id="main" class="container">
-			<ul>
-			</ul>
-		</div>
-	</div>
-	<script type="text/javascript" src="js/common.js"></script>
-	<script type="text/javascript" src="js/indexeddb.js"></script>
-	<script type="text/javascript" src="lib/alloy_finger.js"></script>
-	<script type="text/javascript">
-		$(".app").fadeIn('slow');
-		if(localStorage.theme === 'mitsuha'){
-			$('head').append('<link rel="stylesheet" type="text/css" href="css/mitsuha.list.css">');
-		}
-		$('.title').html(localStorage.folder_name);
-		var folder = localStorage.getItem("folder");
-		var demoDate = [
-			{list_id:1,content:'お風呂ぜっっったい禁止！！！！',folder:4,type:'list'},
-			{list_id:2,content:'体は見ない/触らない！！',folder:4,type:'list'},
-			{list_id:3,content:'脚をひらくな！',folder:4,type:'list'},
-			{list_id:4,content:'男子に触るな！',folder:4,type:'list'},
-			{list_id:5,content:'女子にも触るな！',folder:4,type:'list'}
-		];
-		getDiaryBySearch("list", folder, process);
-		function process(rowdata){
-	    	var data = rowdata.data;
-	    	var monthDivision;
-	    	console.log(data);
-	    	for(var i = 0;i<data.length;i++){
-	    		var $item = $('<li id="'+data[i].list_id+'">'+data[i].content+'</li>');
-	    		if (!data[i].state) {
-	    			$item = $item.addClass('del');
-	    		}
-	    		$("ul").append($item);
-	    	}
-	    	delInit();
-	    }
-	    $('li').not('.new').click(function() {
-	    	if ($(this).attr('class')==='del') {$(this).removeClass('del');}
-	    	else{$(this).addClass('del');}
-	    });
-	    var t = 0;
-	    $('.iconfont').click(function() {
-	    	if (t===0) {//new
-	    		$('ul').append('<li class="new-item"><input id="new"></li>'); 
-	    		$(this).removeClass('icon-pencil').addClass('icon-check');
-	    		t=1;
-	    	}else{//save
-	    		var newvalue = $('#new').val(),
-	    		timestamp = new Date().getTime(),
-	    		list_id = 'lid'+timestamp;
-	    		var data = {list_id:list_id,content:newvalue,folder:folder,type:'list',state:1};
-	    		newvalue = '<li id="'+ list_id +'">' + newvalue +'</li>';
-	    		addData("list",data);
-	    		plus(folder);
-	    		$("ul").append(newvalue);
-	    		$('.new-item').remove();
-	    		$(this).removeClass('icon-book').addClass('icon-pencil');
-	    		t=0;
-	    		var $newOne = $('ul').children().last();
-	    		new AlloyFinger($newOne[0], {
-		    		tap: function (e){
-		            	var $this = $(e.srcElement),
-		            	id = $this.attr('id');
-		    			if ($this.attr('class')==='del') {
-		    				$this.removeClass('del');
-		    				updateData('list', id, {state:1});
-		    			}
-	    				else{
-	    					$this.addClass('del');
-	    					updateData('list', id, {state:0});
-	    				}
-		    		},
-		            longTap: function (e) {
-		            	var $this = $(e.srcElement),
-		            	id = $this.attr('id');
-		            	$this.remove();
-		            	deleteData('list', id);
-		            	minus(folder);
-		            }
-		        });
-	    	}
-	    });
+  <div class="app">
+    <header>
+      <div class="title"></div>
+      <i class="iconfont icon-pencil"></i>
+    </header>
+    <div id="main" class="container">
+      <ul>
+      </ul>
+    </div>
+  </div>
+  <script type="text/javascript" src="js/common.js"></script>
+  <script type="text/javascript" src="js/indexeddb.js"></script>
+  <script type="text/javascript" src="lib/alloy_finger.js"></script>
+  <script type="text/javascript">
+    $(".app").fadeIn('slow');
+    if(localStorage.theme === 'mitsuha'){
+      $('head').append('<link rel="stylesheet" type="text/css" href="css/mitsuha.list.css">');
+    }
+    $('.title').html(localStorage.folder_name);
+    var folder = localStorage.getItem("folder");
+    var demoDate = [
+      {list_id:1,content:'お風呂ぜっっったい禁止！！！！',folder:4,type:'list'},
+      {list_id:2,content:'体は見ない/触らない！！',folder:4,type:'list'},
+      {list_id:3,content:'脚をひらくな！',folder:4,type:'list'},
+      {list_id:4,content:'男子に触るな！',folder:4,type:'list'},
+      {list_id:5,content:'女子にも触るな！',folder:4,type:'list'}
+    ];
+    getDiaryBySearch("list", folder, process);
+    function process(rowdata){
+        var data = rowdata.data;
+        var monthDivision;
+        console.log(data);
+        for(var i = 0;i<data.length;i++){
+          var $item = $('<li id="'+data[i].list_id+'">'+data[i].content+'</li>');
+          if (!data[i].state) {
+            $item = $item.addClass('del');
+          }
+          $("ul").append($item);
+        }
+        delInit();
+      }
+      $('li').not('.new').click(function() {
+        if ($(this).attr('class')==='del') {$(this).removeClass('del');}
+        else{$(this).addClass('del');}
+      });
+      var t = 0;
+      $('.iconfont').click(function() {
+        if (t===0) {//new
+          $('ul').append('<li class="new-item"><input id="new"></li>'); 
+          $(this).removeClass('icon-pencil').addClass('icon-check');
+          t=1;
+        }else{//save
+          var newvalue = $('#new').val(),
+          timestamp = new Date().getTime(),
+          list_id = 'lid'+timestamp;
+          var data = {list_id:list_id,content:newvalue,folder:folder,type:'list',state:1};
+          newvalue = '<li id="'+ list_id +'">' + newvalue +'</li>';
+          addData("list",data);
+          plus(folder);
+          $("ul").append(newvalue);
+          $('.new-item').remove();
+          $(this).removeClass('icon-book').addClass('icon-pencil');
+          t=0;
+          var $newOne = $('ul').children().last();
+          new AlloyFinger($newOne[0], {
+            tap: function (e){
+                  var $this = $(e.srcElement),
+                  id = $this.attr('id');
+              if ($this.attr('class')==='del') {
+                $this.removeClass('del');
+                updateData('list', id, {state:1});
+              }
+              else{
+                $this.addClass('del');
+                updateData('list', id, {state:0});
+              }
+            },
+                longTap: function (e) {
+                  var $this = $(e.srcElement),
+                  id = $this.attr('id');
+                  $this.remove();
+                  deleteData('list', id);
+                  minus(folder);
+                }
+            });
+        }
+      });
 
-	    function delInit(){
-	    	var item = document.getElementsByTagName('li');
-		    for(var i=0;i<item.length;i++){
-		    	new AlloyFinger(item[i], {
-		    		tap: function (e){
-		    			var $this = $(e.srcElement),
-		            	id = $this.attr('id');
-		    			if ($this.attr('class')==='del') {
-		    				$this.removeClass('del');
-		    				updateData('list', id, {state:1});
-		    			}
-	    				else{
-	    					$this.addClass('del');
-	    					updateData('list', id, {state:0});
-	    				}
-		    		},
-		            longTap: function (e) {
-		            	var $this = $(e.srcElement),
-		            	id = $this.attr('id');
-		            	$this.remove();
-		            	deleteData('list', id);
-		            	minus(folder);
-		            }
-		        });
-		    }
-	    }
+      function delInit(){
+        var item = document.getElementsByTagName('li');
+        for(var i=0;i<item.length;i++){
+          new AlloyFinger(item[i], {
+            tap: function (e){
+              var $this = $(e.srcElement),
+                  id = $this.attr('id');
+              if ($this.attr('class')==='del') {
+                $this.removeClass('del');
+                updateData('list', id, {state:1});
+              }
+              else{
+                $this.addClass('del');
+                updateData('list', id, {state:0});
+              }
+            },
+                longTap: function (e) {
+                  var $this = $(e.srcElement),
+                  id = $this.attr('id');
+                  $this.remove();
+                  deleteData('list', id);
+                  minus(folder);
+                }
+            });
+        }
+      }
 
-	</script>
+  </script>
 </body>
 </html>

@@ -489,10 +489,10 @@
                         typeof dataItem.day !== "string" ||
                         typeof dataItem.time !== "string" ||
                         typeof dataItem.month !== "string" ||
-                        typeof dataItem.monthNum !== "number" ||
+                        !/^(((Jan|Febr)uary|March|April|May|Ju(ne|ly)|August|(Septem|Octo|Novem|Decem)ber), ([0-9]{4}))$/.test(dataItem.monthNum) ||
                         typeof dataItem.type !== "string" ||
                         typeof dataItem.description !== "string"
-                      )) return "val 1" // false;
+                      )) return false;
                       if(item.folder.type === "list" && (
                         typeof dataItem.list_id !== "string" ||
                         typeof dataItem.content !== "string" ||

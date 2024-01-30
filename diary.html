@@ -1,224 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Diary</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<!-- 新 Bootstrap 核心 CSS 文件 -->
-	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-	<script src="lib/jquery.min.js"></script>
-	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-	<script src="bootstrap/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="icon/iconfont.css">
-	<!-- 自定义bs -->
-	<link rel="stylesheet" type="text/css" href="css/custombs.css">
-	<style type="text/css">
-		* {
-			-webkit-user-select: none;
+  <meta charset="UTF-8">
+  <title>Diary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+  <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+  <script src="lib/jquery.min.js"></script>
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="bootstrap/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="icon/iconfont.css">
+  <!-- 自定义bs -->
+  <link rel="stylesheet" type="text/css" href="css/custombs.css">
+  <style type="text/css">
+    * {
+      -webkit-user-select: none;
                             -moz-user-select: none;
                              -ms-user-select: none;
                                  user-select: none;
-		}
+    }
 
-		header{
-			/*padding for导航栏*/
-			padding-top: 28px;
-			position: fixed;
-			width: 100vw;
-			background-color: #fff;
-		}
-		#logo{
-			color: #5A95BA;
-			margin: 5px auto;
-		}
-		/*以上公用 以下本文件专用*/
-		#main{
-			min-height: 100vh;
-			padding-top:88px; 
-			padding-bottom: 44px;
-		}
-		/*padding = 140 - 60 - 20 * 2*/
-		#main .show-date{
-			height: 140px;
-			width: 100vw;
-			background-color: #5A95BA;
-			color: #FFF;
-			text-align: center;
-			padding: 20px 0;
-		}
-		#main .show-date .date{
-			font-size: 60px;
-			line-height: 60px;
-			font-weight: bold;
-		}
-		#main .show-date .month,#main .show-date .time{
-			font-size: 15px;
-			line-height: 20px;
-		}
-		#main .input-div .diary-content,#main .input-div .diary-title{
-			margin-top: 15px;
-			border: none;
-			outline: none;
-			box-shadow: none;
-			border-radius: 0;
-		}
-		#main .input-div .diary-title{
-			border-bottom: 1px  #5A95BA solid;
-		}
-		/*height = 100vh - 89px - 140px - 44px */
-		/*全屏高-头部-日期div-footer-title输入框*/
-		#diary-content{
-			max-height:calc(100vh - 89px - 140px - 44px - 75px);
-			min-height:200px;
-			overflow-y: scroll;
-		}
-		footer{
-			position: fixed;
-			width: 100vw;
-			height: 44px;
-			background-color: #5A95BA;
-			bottom: 0;
-			text-align: center;
-		}
-		footer nav .iconfont{
-			color: #FFF;
-			line-height: 44px;
-			padding: 0 15px;
-			font-size: 25px;
-		}
-		.app{
-			display: none;
-		}
+    header{
+      /*padding for导航栏*/
+      padding-top: 28px;
+      position: fixed;
+      width: 100vw;
+      background-color: #fff;
+    }
+    #logo{
+      color: #5A95BA;
+      margin: 5px auto;
+    }
+    /*以上公用 以下本文件专用*/
+    #main{
+      min-height: 100vh;
+      padding-top:88px; 
+      padding-bottom: 44px;
+    }
+    /*padding = 140 - 60 - 20 * 2*/
+    #main .show-date{
+      height: 140px;
+      width: 100vw;
+      background-color: #5A95BA;
+      color: #FFF;
+      text-align: center;
+      padding: 20px 0;
+    }
+    #main .show-date .date{
+      font-size: 60px;
+      line-height: 60px;
+      font-weight: bold;
+    }
+    #main .show-date .month,#main .show-date .time{
+      font-size: 15px;
+      line-height: 20px;
+    }
+    #main .input-div .diary-content,#main .input-div .diary-title{
+      margin-top: 15px;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      border-radius: 0;
+    }
+    #main .input-div .diary-title{
+      border-bottom: 1px  #5A95BA solid;
+    }
+    /*height = 100vh - 89px - 140px - 44px */
+    /*全屏高-头部-日期div-footer-title输入框*/
+    #diary-content{
+      max-height:calc(100vh - 89px - 140px - 44px - 75px);
+      min-height:200px;
+      overflow-y: scroll;
+    }
+    footer{
+      position: fixed;
+      width: 100vw;
+      height: 44px;
+      background-color: #5A95BA;
+      bottom: 0;
+      text-align: center;
+    }
+    footer nav .iconfont{
+      color: #FFF;
+      line-height: 44px;
+      padding: 0 15px;
+      font-size: 25px;
+    }
+    .app{
+      display: none;
+    }
 
-		div[contenteditable=true]:empty:before{
-			content: attr(placeholder);
-			color: grey;
-			font-style: italic;
-		}
-	</style>
+    div[contenteditable=true]:empty:before{
+      content: attr(placeholder);
+      color: grey;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-	<div class="app">
-		<header>
-			<div class="text-center">
-				<div class="btn-group btn-group-sm">
-					<button type="button" class="btn btn-default" onClick="location.replace('entries.html')">Entries</button>
-					<button type="button" class="btn btn-default" onClick="location.replace('calendar.html')">Calendar</button>
-					<button type="button" class="btn btn-default active">Diary</button>
-				</div>
-			</div>
-			<p id="logo" class="center-block">Diary</p>
-		</header>
-		<div id="main">
-			<div class="show-date">
-				<div class="month"></div>
-				<div class="date"></div>
-				<div class="time"></div>
-			</div>
-			<div class="input-div container">
-				<input type="text" class="form-control diary-title" placeholder="Title">
-				<div contenteditable="true" class="form-control diary-content" id="diary-content" placeholder="Content"></div>
-			</div>
-		</div>
-		<footer>
-			<nav>
-				<label for="camera">
-					<i class="iconfont icon-camera" aria-hidden="true"></i>
-					<input type="file" accept="image/*" id="camera" style="display:none">
-				</label>
-				<i class="iconfont icon-save" onclick="save()"></i>
-				<i class="iconfont icon-cancel"></i>
-			</nav>
-		</footer>
-	</div>
-	<script type="text/javascript" src="js/common.js"></script>
-	<script type="text/javascript" src="js/indexeddb.js"></script>
-	<script type="text/javascript">
-		$(".app").fadeIn('slow');
-		if(localStorage.theme === 'mitsuha'){
-			$('head').append('<link rel="stylesheet" type="text/css" href="css/mitsuha.diary.css"><link rel="stylesheet" type="text/css" href="css/mitsuha.bs.css">');
-		}
-		var d = new Date();
-		var monthEnglish = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-		var monthEng = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-		var dayEnglish = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-		var dayEng = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-		var year = d.getFullYear();
-		var month = d.getMonth();
-		var date = d.getDate();
-		var day = d.getDay();
-		var time = formatClock(d);
-		var folder = localStorage.getItem("folder")||'';
-		$('.month').html(monthEng[month]);
-		$('.date').html(date);
-		$('.time').html(dayEnglish[day]+' '+time);
+  <div class="app">
+    <header>
+      <div class="text-center">
+        <div class="btn-group btn-group-sm">
+          <button type="button" class="btn btn-default" onClick="location.replace('entries.html')">Entries</button>
+          <button type="button" class="btn btn-default" onClick="location.replace('calendar.html')">Calendar</button>
+          <button type="button" class="btn btn-default active">Diary</button>
+        </div>
+      </div>
+      <p id="logo" class="center-block">Diary</p>
+    </header>
+    <div id="main">
+      <div class="show-date">
+        <div class="month"></div>
+        <div class="date"></div>
+        <div class="time"></div>
+      </div>
+      <div class="input-div container">
+        <input type="text" class="form-control diary-title" placeholder="Title">
+        <div contenteditable="true" class="form-control diary-content" id="diary-content" placeholder="Content"></div>
+      </div>
+    </div>
+    <footer>
+      <nav>
+        <label for="camera">
+          <i class="iconfont icon-camera" aria-hidden="true"></i>
+          <input type="file" accept="image/*" id="camera" style="display:none">
+        </label>
+        <i class="iconfont icon-save" onclick="save()"></i>
+        <i class="iconfont icon-cancel"></i>
+      </nav>
+    </footer>
+  </div>
+  <script type="text/javascript" src="js/common.js"></script>
+  <script type="text/javascript" src="js/indexeddb.js"></script>
+  <script type="text/javascript">
+    $(".app").fadeIn('slow');
+    if(localStorage.theme === 'mitsuha'){
+      $('head').append('<link rel="stylesheet" type="text/css" href="css/mitsuha.diary.css"><link rel="stylesheet" type="text/css" href="css/mitsuha.bs.css">');
+    }
+    var d = new Date();
+    var monthEnglish = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    var monthEng = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var dayEnglish = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    var dayEng = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var date = d.getDate();
+    var day = d.getDay();
+    var time = formatClock(d);
+    var folder = localStorage.getItem("folder")||'';
+    $('.month').html(monthEng[month]);
+    $('.date').html(date);
+    $('.time').html(dayEnglish[day]+' '+time);
 
-		function save(){
-			var title = $(".diary-title").val()||'No Title';
-			var content = $("#diary-content").html().replace(/<div>/g, "<br>").replace(/<\/div>/g, "");
-			if(content){
-				var description = content.split("<br>")[0].slice(0, 80) + (content.length > 80 ?"..." : "");
-				var hm = $('.show-date .time .hm').html();//for hour Minute
-				var timestamp = new Date().getTime();
-				var create_date = getNowFormatDate();
-				var data = {diary_id:"did"+timestamp,create_date:create_date,content:content,title:title,folder:folder,date:date,day:dayEng[day],time:time,month:monthEnglish[month],monthNum:month+1,type:"diary",description: description};
-				console.log(data);
-				addData("diary",data);
-				plus(folder);
-				setTimeout("location.replace('entries.html')",500);
-			}else{
-				alert("~content empty~");
-			}
-		}
-		$("#camera").on("change", () => {
-			const reader = new FileReader();
-			reader.onerror = console.error;
-			reader.onload = () => $("#diary-content").html(`${$("#diary-content").html()}<br><br><img src="${reader.result}" width="50%">`);
+    function save(){
+      var title = $(".diary-title").val()||'No Title';
+      var content = $("#diary-content").html().replace(/<div>/g, "<br>").replace(/<\/div>/g, "");
+      if(content){
+        var description = content.split("<br>")[0].slice(0, 80) + (content.length > 80 ?"..." : "");
+        var hm = $('.show-date .time .hm').html();//for hour Minute
+        var timestamp = new Date().getTime();
+        var create_date = getNowFormatDate();
+        var data = {diary_id:"did"+timestamp,create_date:create_date,content:content,title:title,folder:folder,date:date,day:dayEng[day],time:time,month:monthEnglish[month],monthNum:`${monthEnglish[month]}, ${year}`,type:"diary",description: description};
+        console.log(data);
+        addData("diary",data);
+        plus(folder);
+        setTimeout("location.replace('entries.html')",500);
+      }else{
+        alert("~content empty~");
+      }
+    }
+    $("#camera").on("change", () => {
+      const reader = new FileReader();
+      reader.onerror = console.error;
+      reader.onload = () => $("#diary-content").html(`${$("#diary-content").html()}<br><br><img src="${reader.result}" width="50%">`);
 
-			reader.readAsDataURL($("#camera").prop("files")[0]);
-		});
-		$(".icon-cancel").on("click", () => {
-			location.replace("entries.html")
-		});
-		$("#diary-content").on('focus',function(){
-			$('.show-date').css('display', 'none');
-		});
-		$("#diary-content").on('blur',function(){
-			$('.show-date').css('display', 'block');
-		});
-		function formatClock(date) {
-			const hh = date.getHours();
-			const mm = date.getMinutes();
+      reader.readAsDataURL($("#camera").prop("files")[0]);
+    });
+    $(".icon-cancel").on("click", () => {
+      location.replace("entries.html")
+    });
+    $("#diary-content").on('focus',function(){
+      $('.show-date').css('display', 'none');
+    });
+    $("#diary-content").on('blur',function(){
+      $('.show-date').css('display', 'block');
+    });
+    function formatClock(date) {
+      const hh = date.getHours();
+      const mm = date.getMinutes();
 
-			return [hh, mm].map(v => (v+"").padStart(2, "0")).join(":");
-		}
-		function getNowFormatDate() {
-		    var date = new Date();
-		    var seperator1 = "-";
-		    var seperator2 = ":";
-		    var month = date.getMonth() + 1;
-		    var strDate = date.getDate();
-		    if (month >= 1 && month <= 9) {
-		        month = "0" + month;
-		    }
-		    if (strDate >= 0 && strDate <= 9) {
-		        strDate = "0" + strDate;
-		    }
-		    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
-		            + " " + date.getHours() + seperator2 + date.getMinutes()
-		            + seperator2 + date.getSeconds();
-		    return currentdate;
-		}
+      return [hh, mm].map(v => (v+"").padStart(2, "0")).join(":");
+    }
+    function getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+                + " " + date.getHours() + seperator2 + date.getMinutes()
+                + seperator2 + date.getSeconds();
+        return currentdate;
+    }
 
-		function appendPic(){
-			$("#diary-content").append('<img src="avatar.png" alt="avatar" class="img-circle" style="width:100%">');
-		}
-		// window.onbeforeunload = function(e) {
-		// 	var dialogText = 'leaveing page without save';
-		// 	e.returnValue = dialogText;
-		// 	return dialogText;
-		// };
-	</script>
+    function appendPic(){
+      $("#diary-content").append('<img src="avatar.png" alt="avatar" class="img-circle" style="width:100%">');
+    }
+    // window.onbeforeunload = function(e) {
+    //   var dialogText = 'leaveing page without save';
+    //   e.returnValue = dialogText;
+    //   return dialogText;
+    // };
+  </script>
 </body>
 </html>

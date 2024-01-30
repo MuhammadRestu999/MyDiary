@@ -1,331 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>MyDiary</title>
-	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-	<script src="lib/jquery.min.js"></script>
-	<script src="bootstrap/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="icon/iconfont.css">
-	<link rel="stylesheet" type="text/css" href="css/custombs.css">
-	<style>
-		* {
-			-webkit-user-select: none;
-			   -moz-user-select: none;
-			    -ms-user-select: none;
-				user-select: none;
-		}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>MyDiary</title>
+  <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+  <script src="lib/jquery.min.js"></script>
+  <script src="bootstrap/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="icon/iconfont.css">
+  <link rel="stylesheet" type="text/css" href="css/custombs.css">
+  <style>
+    * {
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+        user-select: none;
+    }
 
-		/*程序样式表*/
-		header{
-			/*padding for导航栏 22px + 分割用6px*/
-			position: fixed;
-			top: 0;
-			z-index: 999;
-			padding-top: 28px;
-			width: 100vw;
-			background-color: #fff;
-		}
-		#logo{
-			color: #5A95BA;
-			margin: 5px auto;
-		}
-		#main{
-			background-image: url('img/52502973_p0.png');
-			background-repeat: repeat;
-			min-height: 100vh;
-			padding-top:89px; 
-			padding-bottom: 44px;
-		}
-		.item{
-			height: 80px;
-			background-color: #fff;
-			border-radius: 6px;
-			margin-bottom: 10px;
-			color: #5A95BA;
-			opacity: .8;
-		}
-		.month-item{
-			line-height: 60px;
-			font-size: 40px;
-			color: #FFF;
-			text-align: center;
-			text-shadow: 0 2px 0 rgba(0,0,0,0.2);
-		}
-		.date-and-week{
-			padding-top: 10px;
-			height: 60px;
-			width: 60px;
-			text-align: center;
-		}
-		.date-and-week .date{
-			font-size: 40px;
-			line-height: 40px;
-			margin-bottom: 0;
-		}
-		.content{
-			padding-top: 14px;
-			width: calc(100% - 130px);
-		}
-		.content p{
-			margin-bottom: 0;
-		}
-		.content .title, .content .description{
-			width: 100%;
-			overflow:hidden; 
-			text-overflow:ellipsis;
-		}
-		.content .create_time{
-			font-size: 10px;
-		}
-		.content .description{
-			font-size: 10px;
-		}
-		.state{
-			padding-right: 10px;
-			padding-top: 14px;
-		}
-		.state i{
-			margin: 0 2px;
-		}
-		.state p{
-			text-align: right;
-			font-size: 20px;
-		}
-		footer{
-			position: fixed;
-			width: 100vw;
-			height: 44px;
-			background-color: #5A95BA;
-			bottom: 0;
-		}
-		footer nav .iconfont{
-			color: #FFF;
-			line-height: 44px;
-			padding: 0 15px;
-			font-size: 25px;
-		}
-		footer nav .total{
-			color: #FFF;
-			line-height: 44px;
-			padding: 0 15px;
-			float: right;
-			font-size: 20px;
-		}
-		.app{
-			display: none;
-		}
-		/*css of modal*/
-		.show-date{
-			height: 140px;
-			width: 100%;
-			background-color: #5A95BA;
-			color: #FFF;
-			text-align: center;
-		}
-		.show-date .date{
-			font-size: 60px;
-			line-height: 60px;
-		}
-		.show-date .month, .show-date .time{
-			font-size: 15px;
-			line-height: 20px;
-		}
-		.modal-content{
-			border-radius: 15px;
-			overflow:hidden;
-			background-color: transparent;
-			box-shadow: none;
-			height: calc(100vh - 20px);
-		}
-		.modal-body{
-			background-color: #fff;
-			height: calc(100% - 180px);
-			overflow: scroll;
-		}
-		.reading-title{
-			font-size: 1.4em;
-			width: 80%;
-			word-wrap: break-word;
-			margin: auto;
-			text-align: center;
-		}
-		.reading-content{
-			width: 90%;
-			margin: 10px auto;
-			word-wrap: break-word;
-			-webkit-user-select: auto;
-			    -moz-user-select: auto;
-			     -ms-user-select: auto;
-			         user-select: auto;
-		}
-		.modal-footer{
-			background-color: #5A95BA;
-			padding: 0;
-			white-space:nowrap;
-		}
-		.modal-footer .iconfont{
-			background-color: #5A95BA;
-			line-height: 40px;
-			font-size: 20px;
-			width: 19%;
-			display: inline-block;
-			color: #fff;
-			text-align: center;
-		}
-	</style>
+    /*程序样式表*/
+    header{
+      /*padding for导航栏 22px + 分割用6px*/
+      position: fixed;
+      top: 0;
+      z-index: 999;
+      padding-top: 28px;
+      width: 100vw;
+      background-color: #fff;
+    }
+    #logo{
+      color: #5A95BA;
+      margin: 5px auto;
+    }
+    #main{
+      background-image: url('img/52502973_p0.png');
+      background-repeat: repeat;
+      min-height: 100vh;
+      padding-top:89px; 
+      padding-bottom: 44px;
+    }
+    .item{
+      height: 80px;
+      background-color: #fff;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      color: #5A95BA;
+      opacity: .8;
+    }
+    .month-item{
+      line-height: 60px;
+      font-size: 40px;
+      color: #FFF;
+      text-align: center;
+      text-shadow: 0 2px 0 rgba(0,0,0,0.2);
+    }
+    .date-and-week{
+      padding-top: 10px;
+      height: 60px;
+      width: 60px;
+      text-align: center;
+    }
+    .date-and-week .date{
+      font-size: 40px;
+      line-height: 40px;
+      margin-bottom: 0;
+    }
+    .content{
+      padding-top: 14px;
+      width: calc(100% - 130px);
+    }
+    .content p{
+      margin-bottom: 0;
+    }
+    .content .title, .content .description{
+      width: 100%;
+      overflow:hidden; 
+      text-overflow:ellipsis;
+    }
+    .content .create_time{
+      font-size: 10px;
+    }
+    .content .description{
+      font-size: 10px;
+    }
+    .state{
+      padding-right: 10px;
+      padding-top: 14px;
+    }
+    .state i{
+      margin: 0 2px;
+    }
+    .state p{
+      text-align: right;
+      font-size: 20px;
+    }
+    footer{
+      position: fixed;
+      width: 100vw;
+      height: 44px;
+      background-color: #5A95BA;
+      bottom: 0;
+    }
+    footer nav .iconfont{
+      color: #FFF;
+      line-height: 44px;
+      padding: 0 15px;
+      font-size: 25px;
+    }
+    footer nav .total{
+      color: #FFF;
+      line-height: 44px;
+      padding: 0 15px;
+      float: right;
+      font-size: 20px;
+    }
+    .app{
+      display: none;
+    }
+    /*css of modal*/
+    .show-date{
+      height: 140px;
+      width: 100%;
+      background-color: #5A95BA;
+      color: #FFF;
+      text-align: center;
+    }
+    .show-date .date{
+      font-size: 60px;
+      line-height: 60px;
+    }
+    .show-date .month, .show-date .time{
+      font-size: 15px;
+      line-height: 20px;
+    }
+    .modal-content{
+      border-radius: 15px;
+      overflow:hidden;
+      background-color: transparent;
+      box-shadow: none;
+      height: calc(100vh - 20px);
+    }
+    .modal-body{
+      background-color: #fff;
+      height: calc(100% - 180px);
+      overflow: scroll;
+    }
+    .reading-title{
+      font-size: 1.4em;
+      width: 80%;
+      word-wrap: break-word;
+      margin: auto;
+      text-align: center;
+    }
+    .reading-content{
+      width: 90%;
+      margin: 10px auto;
+      word-wrap: break-word;
+      -webkit-user-select: auto;
+          -moz-user-select: auto;
+           -ms-user-select: auto;
+               user-select: auto;
+    }
+    .modal-footer{
+      background-color: #5A95BA;
+      padding: 0;
+      white-space:nowrap;
+    }
+    .modal-footer .iconfont{
+      background-color: #5A95BA;
+      line-height: 40px;
+      font-size: 20px;
+      width: 19%;
+      display: inline-block;
+      color: #fff;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header show-date">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><br>
-				<div class="month"></div>
-				<div class="date"></div>
-				<div class="time"></div>
-			</div>
-			<div class="modal-body">
-				<div class="reading-title"></div>
-				<div class="reading-content"></div>
-			</div>
-			<div class="modal-footer">
-				<i class="iconfont icon-ellipsis"></i>
-				<i class="iconfont icon-location"></i>
-				<i class="iconfont icon-camera"></i>
-				<i class="iconfont icon-music"></i>
-				<i class="iconfont icon-trash"></i>
-			</div>
-		</div>
-	</div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header show-date">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><br>
+        <div class="month"></div>
+        <div class="date"></div>
+        <div class="time"></div>
+      </div>
+      <div class="modal-body">
+        <div class="reading-title"></div>
+        <div class="reading-content"></div>
+      </div>
+      <div class="modal-footer">
+        <i class="iconfont icon-ellipsis"></i>
+        <i class="iconfont icon-location"></i>
+        <i class="iconfont icon-camera"></i>
+        <i class="iconfont icon-music"></i>
+        <i class="iconfont icon-trash"></i>
+      </div>
+    </div>
+  </div>
 </div>
 
-	<div class="app">
-		<header>
-			<div class="text-center">
-				<div class="btn-group btn-group-sm">
-					<button type="button" class="btn btn-default active">Entries</button>
-					<button type="button" class="btn btn-default" onClick="location.replace('calendar.html')">Calendar</button>
-					<button type="button" class="btn btn-default" onClick="location.replace('diary.html')">Diary</button>
-				</div>
-			</div>
-			<p id="logo" class="center-block">Diary</p>
-		</header>
-		<div id="main" class="container">
-			<!-- <div class="month-item">9</div>
-			<div class="item">
-				<div class="date-and-week pull-left">
-					<p class="date">11</p>
-					<p class="week">Sun</p>
-				</div>
-				<div class="content pull-left">
-					<p class="create_time">16:21</p>
-					<p class="title">バイト</p>
-					<p class="description"></p>
-				</div>
-				<div class="state pull-right">
-					<i class="iconfont icon-yintian"></i>
-					<i class="iconfont icon-smile-copy"></i>
-					<i class="iconfont icon-biaoqian"></i>
-				</div>
-			</div>
-			<div class="item">
-				<div class="date-and-week pull-left">
-					<p class="date">9</p>
-					<p class="week">Fri</p>
-				</div>
-				<div class="content pull-left">
-					<p class="create_time">21.12</p>
-					<p class="title">東京生活３</p>
-					<p class="description">お台場水族館に男子二人と</p>
-				</div>
-				<div class="state pull-right">
-					<i class="iconfont icon-qing"></i>
-					<i class="iconfont icon-smile-copy"></i>
-					<i class="iconfont icon-biaoqian"></i>
-					<p><i class="iconfont icon-fujian"></i></p>
-				</div>
-			</div>
-			<div class="item">
-				<div class="date-and-week pull-left">
-					<p class="date">8</p>
-					<p class="week">Thu</p>
-				</div>
-				<div class="content pull-left">
-					<p class="create_time">21.12</p>
-					<p class="title">中間テスト開始</p>
-					<p class="description"></p>
-				</div>
-				<div class="state pull-right">
-					<i class="iconfont icon-qing"></i>
-					<i class="iconfont icon-smile-copy"></i>
-					<i class="iconfont icon-biaoqian"></i>
-				</div>
-			</div> -->
+  <div class="app">
+    <header>
+      <div class="text-center">
+        <div class="btn-group btn-group-sm">
+          <button type="button" class="btn btn-default active">Entries</button>
+          <button type="button" class="btn btn-default" onClick="location.replace('calendar.html')">Calendar</button>
+          <button type="button" class="btn btn-default" onClick="location.replace('diary.html')">Diary</button>
+        </div>
+      </div>
+      <p id="logo" class="center-block">Diary</p>
+    </header>
+    <div id="main" class="container">
+      <!-- <div class="month-item">9</div>
+      <div class="item">
+        <div class="date-and-week pull-left">
+          <p class="date">11</p>
+          <p class="week">Sun</p>
+        </div>
+        <div class="content pull-left">
+          <p class="create_time">16:21</p>
+          <p class="title">バイト</p>
+          <p class="description"></p>
+        </div>
+        <div class="state pull-right">
+          <i class="iconfont icon-yintian"></i>
+          <i class="iconfont icon-smile-copy"></i>
+          <i class="iconfont icon-biaoqian"></i>
+        </div>
+      </div>
+      <div class="item">
+        <div class="date-and-week pull-left">
+          <p class="date">9</p>
+          <p class="week">Fri</p>
+        </div>
+        <div class="content pull-left">
+          <p class="create_time">21.12</p>
+          <p class="title">東京生活３</p>
+          <p class="description">お台場水族館に男子二人と</p>
+        </div>
+        <div class="state pull-right">
+          <i class="iconfont icon-qing"></i>
+          <i class="iconfont icon-smile-copy"></i>
+          <i class="iconfont icon-biaoqian"></i>
+          <p><i class="iconfont icon-fujian"></i></p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="date-and-week pull-left">
+          <p class="date">8</p>
+          <p class="week">Thu</p>
+        </div>
+        <div class="content pull-left">
+          <p class="create_time">21.12</p>
+          <p class="title">中間テスト開始</p>
+          <p class="description"></p>
+        </div>
+        <div class="state pull-right">
+          <i class="iconfont icon-qing"></i>
+          <i class="iconfont icon-smile-copy"></i>
+          <i class="iconfont icon-biaoqian"></i>
+        </div>
+      </div> -->
 
-		</div>
-		<footer>
-			<nav>
-				<i class="iconfont icon-list"></i>
-				<i class="iconfont icon-pencil"></i>
-				<i class="iconfont icon-androidcamera"></i>
-				<span class="total"></span>
-			</nav>
-		</footer>
-	</div>
-	<script type="text/javascript" src="js/common.js"></script>
-	<script type="text/javascript" src="js/indexeddb.js"></script>
-	<script type="text/javascript">
-		$(".app").fadeIn('slow');
-		if(localStorage.theme === 'mitsuha'){
-			$('head').append('<link rel="stylesheet" type="text/css" href="css/mitsuha.entries.css"><link rel="stylesheet" type="text/css" href="css/mitsuha.bs.css">');
-		}
-		var demoDate = [{date:11,day:'Sun',time:'16:21',title:'バイト'}];
-		var folder = localStorage.getItem("folder");
-		getDiaryBySearch("diary", folder, process);
-		function process(rowdata){
-	    	var data = rowdata.data;
-	    	var monthDivision;
-	    	console.log(data);
-	    	$('.total').html(data.length+' Entries');
-	    	for(var i = 0;i<data.length;i++){
-	    		var item = '<div id="'+data[i].diary_id+'" data-toggle="modal" data-target="#myModal" class="item"><div class="date-and-week pull-left"><p class="date">'+data[i].date+'</p><p class="week">'+data[i].day+'</p></div><div class="content pull-left"><p class="create_time">'+data[i].time+'</p><p class="title">'+data[i].title+'</p><p class="description">'+data[i].description+'</p></div><div class="state pull-right"><i class="iconfont icon-qing"></i><i class="iconfont icon-smile-copy"></i><i class="iconfont icon-biaoqian"></i></div></div>';
-	    		$("#main").prepend(item);
-	    		monthDivision = data[i].monthNum;
-	    		if(data[i+1]){
-	    			if (data[i].month!==data[i+1].month) {
-		    			$("#main").prepend('<div class="month-item">'+monthDivision+'</div>');
-		    		}
-	    		}else{
-		    		$("#main").prepend('<div class="month-item">'+monthDivision+'</div>');
-	    		}
-	    		
-	    	}
-	    }
-	    $('#main').on('click','.item',function(){
-	    	var id = $(this).attr('id');
-	    	read(id);
-	    });
-	    function read(id){
-	    	getDataById('diary',id,loadDiary);
-	    }
-	    function loadDiary(ret){
-			var data = ret.data;
-			$('.month').html(data.month);
-			$('div.date').html(data.date);
-			$('.time').html(data.time);
-			$('.reading-title').html(data.title);
-			$('.reading-content').html(data.content);
-			$('.icon-shanchu').attr('id', data.diary_id);
-		}
-		$('.icon-shanchu').click(function() {
-			minus(folder);
-			deleteData('diary', $(this).attr('id'), function(){
-				setTimeout("location.reload()",500);
-			});
-		});
-	</script>
+    </div>
+    <footer>
+      <nav>
+        <i class="iconfont icon-list"></i>
+        <i class="iconfont icon-pencil"></i>
+        <i class="iconfont icon-androidcamera"></i>
+        <span class="total"></span>
+      </nav>
+    </footer>
+  </div>
+  <script type="text/javascript" src="js/common.js"></script>
+  <script type="text/javascript" src="js/indexeddb.js"></script>
+  <script type="text/javascript">
+    $(".app").fadeIn('slow');
+    if(localStorage.theme === 'mitsuha'){
+      $('head').append('<link rel="stylesheet" type="text/css" href="css/mitsuha.entries.css"><link rel="stylesheet" type="text/css" href="css/mitsuha.bs.css">');
+    }
+    var demoDate = [{date:11,day:'Sun',time:'16:21',title:'バイト'}];
+    var folder = localStorage.getItem("folder");
+    getDiaryBySearch("diary", folder, process);
+    function process(rowdata){
+        var data = rowdata.data;
+        var monthDivision;
+        console.log(data);
+        $('.total').html(data.length+' Entries');
+        for(var i = 0;i<data.length;i++){
+          var item = '<div id="'+data[i].diary_id+'" data-toggle="modal" data-target="#myModal" class="item"><div class="date-and-week pull-left"><p class="date">'+data[i].date+'</p><p class="week">'+data[i].day+'</p></div><div class="content pull-left"><p class="create_time">'+data[i].time+'</p><p class="title">'+data[i].title+'</p><p class="description">'+data[i].description+'</p></div><div class="state pull-right"><i class="iconfont icon-qing"></i><i class="iconfont icon-smile-copy"></i><i class="iconfont icon-biaoqian"></i></div></div>';
+          $("#main").prepend(item);
+          monthDivision = data[i].monthNum;
+          if(data[i+1]){
+            if (data[i].month!==data[i+1].month) {
+              $("#main").prepend('<div class="month-item">'+monthDivision+'</div>');
+            }
+          }else{
+            $("#main").prepend('<div class="month-item">'+monthDivision+'</div>');
+          }
+          
+        }
+      }
+      $('#main').on('click','.item',function(){
+        var id = $(this).attr('id');
+        read(id);
+      });
+      function read(id){
+        getDataById('diary',id,loadDiary);
+      }
+      function loadDiary(ret){
+      var data = ret.data;
+      $('.month').html(data.month);
+      $('div.date').html(data.date);
+      $('.time').html(data.time);
+      $('.reading-title').html(data.title);
+      $('.reading-content').html(data.content);
+      $('.icon-trash').attr('id', data.diary_id);
+    }
+    $('.icon-trash').click(function() {
+      minus(folder);
+      deleteData('diary', $(this).attr('id'), function(){
+        setTimeout("location.reload()",500);
+      });
+    });
+  </script>
 </body>
 </html>
