@@ -24,6 +24,8 @@ MyDiary is a website inspired by the anime [Kimi no Na wa (Your Name)](https://m
   <img alt="4" src="screenshots/4.jpg">
   <img alt="5" src="screenshots/5.jpg">
   <img alt="6" src="screenshots/6.jpg">
+  <img alt="7" src="screenshots/7.jpg">
+  <img alt="8" src="screenshots/8.jpg">
 </details>
 
 ## Credits
