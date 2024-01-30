@@ -15,8 +15,6 @@ MyDiary is a website inspired by the anime [Kimi no Na wa (Your Name)](https://m
 - Theme Customization: Personalize your experience by changing the theme.
 - And more: Explore additional features for an enriched diary-keeping experience.
 
-Feel free to contribute and make MyDiary even better for users everywhere.```
-
 ## App/web preview
 <details>
   <summary>Open Preview</summary>
@@ -31,12 +29,18 @@ Feel free to contribute and make MyDiary even better for users everywhere.```
 ## Credits
 <ul>
   <li>
-    <a></a>
+    <a href="https://github.com/ssshooter">
+      Original code source
+    </a>
   </li>
   <li>
-    <a></a>
+    <a href="https://github.com/rizxyu">
+      Designer preview image
+    </a>
   </li>
   <li>
-    <a></a>
+    <a href="https://github.com/MuhammadRetu999">
+      Perform code upgrades and fixes
+    </a>
   </li>
 </li>
