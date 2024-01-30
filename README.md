@@ -3,7 +3,7 @@
   <img src="https://initiate.alphacoders.com/download/images7/751199/jpg">
 </div>
 
-MyDiary is a website inspired by the anime [Kimi no Na wa (Your Name)](https://myanimelist.net/32281), sharing a 90% similarity. Leveraging IndexDB storage, it provides a unique experience. The original codebase was crafted by [ssshooter](https://github.com/ssshooter/MyDiary/), and I have contributed by fixing bugs and implementing updates.
+MyDiary is a website inspired by the anime [Kimi no Na wa (Your Name)](https://myanimelist.net/anime/32281), sharing a 90% similarity. Leveraging IndexDB storage, it provides a unique experience. The original codebase was crafted by [ssshooter](https://github.com/ssshooter/MyDiary/), and I have contributed by fixing bugs and implementing updates.
 
 
 ## Features
