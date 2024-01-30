@@ -1,34 +1,22 @@
 # MyDiary
-
-data storage with indexedDB [Same as my last note app](https://github.com/ssshooter/DAnote)     
-Thanks [Calvin-Huang](https://github.com/Calvin-Huang/MyDiary)for design         
+MyDiary is a website inspired by the anime [Kimi no Na wa (Your Name)](https://myanimelist.net/xxx), sharing a 90% similarity. Leveraging IndexDB storage, it provides a unique experience. The original codebase was crafted by [ssshooter](https://github.com/ssshooter/MyDiary/), and I have contributed by fixing bugs and implementing updates.
 
 
-数据储存方式参考[之前写的日记应用](https://github.com/ssshooter/DAnote)  
-感谢[Calvin-Huang](https://github.com/Calvin-Huang/MyDiary)的设计图  
-html5版已基本完成，准备改成hybird app，方法还在思考中  
-最后，代码写得很蠢请多多指教。。。  
-功能  
-* 电话本 
-* 日记本
-* 待办事项  
+## Features
+- Diary Entry: Capture and store your personal thoughts and experiences.
+- Contacts: Manage and save your important contacts.
+- Todo List: Organize your tasks with a convenient to-do list.
+- Photo Integration: Enhance your diary entries by including photos.
+- Backup and Restore: Safeguard your data with JSON file backup and restore functionality (shake your device on the main page to trigger the popup).
+- Theme Customization: Personalize your experience by changing the theme.
+- And more: Explore additional features for an enriched diary-keeping experience.
 
-    
-# 界面截图
-![image](https://github.com/ssshooter/MyDiary/blob/master/Screenshots/02.png)
-![image](https://github.com/ssshooter/MyDiary/blob/master/Screenshots/03.png)
-![image](https://github.com/ssshooter/MyDiary/blob/master/Screenshots/04.png)
-![image](https://github.com/ssshooter/MyDiary/blob/master/Screenshots/08.png)
-![image](https://github.com/ssshooter/MyDiary/blob/master/Screenshots/09.png)
+Feel free to contribute and make MyDiary even better for users everywhere.```
 
-# 功能测试
-![image](https://github.com/ssshooter/MyDiary/blob/master/Screenshots/05.png)
-![image](https://github.com/ssshooter/MyDiary/blob/master/Screenshots/07.png)
-![image](https://github.com/ssshooter/MyDiary/blob/master/Screenshots/10.png)  
-
-# 新主题！
-![image](https://github.com/ssshooter/MyDiary/blob/master/Screenshots/11.png)  
-![image](https://github.com/ssshooter/MyDiary/blob/master/Screenshots/12.png)  
-![image](https://github.com/ssshooter/MyDiary/blob/master/Screenshots/13.png)  
-![image](https://github.com/ssshooter/MyDiary/blob/master/Screenshots/14.png)  
-![image](https://github.com/ssshooter/MyDiary/blob/master/Screenshots/15.png)
+## App/web preview
+![Screenshot 1](screenshots/1.jpg)
+![Screenshot 2](screenshots/2.jpg)
+![Screenshot 3](screenshots/3.jpg)
+![Screenshot 4](screenshots/4.jpg)
+![Screenshot 5](screenshots/5.jpg)
+![Screenshot 6](screenshots/6.jpg)

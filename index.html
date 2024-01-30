@@ -104,6 +104,10 @@
         position: absolute;
         right: 10px;
       }
+      footer #new {
+        position: absolute;
+        right: 50px;
+      }
       #search-result {
         display: none;
         background-color: rgba(0,0,0,.5);
@@ -240,6 +244,7 @@
         <input type="text" name="search" id="search" />
         <i class="iconfont icon-search"></i>
         <i class="iconfont icon-setting" id="setting"></i>
+        <i class="iconfont icon-plus" id="new" data-toggle="modal" data-poptarget="newfolder"></i>
       </footer>
     </div>
     <div id="setting-div">
@@ -283,7 +288,9 @@
         $("head").append('<link rel="stylesheet" type="text/css" href="css/mitsuha.home.css"><link rel="stylesheet" type="text/css" href="css/mitsuha.bs.css">');
         $('img[alt="avatar"]').attr("src", "img/avatar2.png");
       };
-      $("#new").popUpPop("newfolder");
+      document.querySelectorAll("#new").forEach(function(el) {
+        $(el).popUpPop("newfolder");
+      });
       getDataAll("menu", process);
       function process(rowdata) {
         const data = rowdata.data;
