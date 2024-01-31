@@ -5,6 +5,9 @@
 
 MyDiary is a website inspired by the anime [Kimi no Na wa (Your Name)](https://myanimelist.net/anime/32281), sharing a 90% similarity. Leveraging IndexDB storage, it provides a unique experience. The original codebase was crafted by [ssshooter](https://github.com/ssshooter/MyDiary/), and I have contributed by fixing bugs and implementing updates.
 
+The <b>.apk</b> (Android Application) file version is also available! Click below to download:
+**[Try the latest version here](https://github.com/MuhammadRestu999/MyDiary/releases/latest)**
+
 
 ## Features
 - Diary Entry: Capture and store your personal thoughts and experiences.
@@ -45,4 +48,4 @@ MyDiary is a website inspired by the anime [Kimi no Na wa (Your Name)](https://m
       Perform code upgrades and fixes
     </a>
   </li>
-</li>
+</ul>
