@@ -7,7 +7,7 @@ var db_obj;
    request.onsuccess = function (e) {
       db_obj = e.target.result;
    };
-   request.onupgradeneeded = function (e) {//版本不一致时调用onupgradeneeded
+   request.onupgradeneeded = function (e) {
       var thisDB = e.target.result;
       if (!thisDB.objectStoreNames.contains("diary")) {
          var objStore = thisDB.createObjectStore("diary", {keyPath: "diary_id"});
@@ -233,7 +233,7 @@ function getAddress(folder, cb) {
       console.dir(event)
    };
    var objectStore = transaction.objectStore('address');
-   var lowerBound = [folder,'#'];//顺序影响结果，要先选出文件夹再定范围
+   var lowerBound = [folder,'#'];
    var upperBound = [folder,'Z'];
    var range = IDBKeyRange.bound(lowerBound, upperBound);
    var rowData=[];
@@ -282,7 +282,7 @@ function searchAddress(folder, keyword, cb) {
       console.dir(event)
    };
    var objectStore = transaction.objectStore('address');
-   var lowerBound = [folder,'A'];//顺序影响结果，要先选出文件夹再定范围
+   var lowerBound = [folder,'A'];
    var upperBound = [folder,'Z'];
    var range = IDBKeyRange.bound(lowerBound, upperBound);
    var result=[];
